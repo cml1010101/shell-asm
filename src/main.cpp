@@ -6,5 +6,4 @@ int main(int argc, const char** argv)
     asmjit::CodeHolder code;
     code.init(runtime.environment());
     asmjit::x86::Assembler assembler(&code);
-    asmjit::x86::rax
 }
