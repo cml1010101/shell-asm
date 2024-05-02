@@ -1,9 +1,13 @@
 #include <asmjit/asmjit.h>
 #include <iostream>
+#include <sys/ptrace.h>
+#include <boost/thread.hpp>
+void executor()
+{
+}
 int main(int argc, const char** argv)
 {
-    asmjit::JitRuntime runtime;
-    asmjit::CodeHolder code;
-    code.init(runtime.environment());
-    asmjit::x86::Assembler assembler(&code);
+    boost::thread thread = boost::thread([]() {
+        for (;;);
+    });
 }
