@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project(shell-asm VERSION 0.1.0 LANGUAGES CXX)
+find_package(asmjit REQUIRED)
+add_executable(shell-asm "src/main.cpp")
+target_link_libraries(shell-asm PRIVATE asmjit::asmjit)
