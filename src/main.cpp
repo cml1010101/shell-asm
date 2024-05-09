@@ -526,11 +526,11 @@ int main(int argc, const char** argv)
             system("clear");
             continue;
         }
-        if (line == "rip")
-        {
-            std::cout << "RIP: " << "0x" << std::hex << runtime.get_instruction_pointer() << std::endl;
-            continue;
-        }
+        // if (line == "rip")
+        // {
+        //     std::cout << "RIP: " << "0x" << std::hex << runtime.get_instruction_pointer() << std::endl;
+        //     continue;
+        // }
         if (runtime.parse(line))
         {
             runtime.execute();
