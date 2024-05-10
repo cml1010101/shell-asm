@@ -52,6 +52,10 @@ public:
     {
         return base;
     }
+    uintptr_t get_address() const
+    {
+        return base + code_size;
+    }
 private:
     uintptr_t base;
     size_t code_size;
@@ -93,9 +97,9 @@ int main()
 {
     Assembler assembler;
     ProcessMemory memory;
-    memory.write(assembler.assemble({
+    memory.write(assembler.assemble(memory.get_address(), {
         "int 3"
-    }));
+    }).first);
     TracedProcess process([&]() {
         std::cout << "Child process running" << std::endl;
         ((void (*)())memory.get_base())();
@@ -115,8 +119,12 @@ int main()
         }
         try
         {
-            memory.write(assembler.assemble({line}));
-            process.step();
+            auto [insns, insn_count] = assembler.assemble(memory.get_address(), {line});
+            memory.write(insns);
+            for (size_t i = 0; i < insn_count; i++)
+            {
+                process.step();
+            }
             process.print_registers();
         }
         catch(const std::invalid_argument& e)

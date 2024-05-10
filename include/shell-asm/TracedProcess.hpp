@@ -7,6 +7,7 @@
 #include <functional>
 #include <stdexcept>
 #include <iostream>
+#include <iomanip>
 class TracedProcess
 {
 public:
@@ -44,23 +45,23 @@ public:
     {
         struct user_regs_struct regs;
         ptrace(PTRACE_GETREGS, pid, 0, &regs);
-        out << "RAX: " << regs.rax << std::endl;
-        out << "RBX: " << regs.rbx << std::endl;
-        out << "RCX: " << regs.rcx << std::endl;
-        out << "RDX: " << regs.rdx << std::endl;
-        out << "RDI: " << regs.rdi << std::endl;
-        out << "RSI: " << regs.rsi << std::endl;
-        out << "RBP: " << regs.rbp << std::endl;
-        out << "RSP: " << regs.rsp << std::endl;
-        out << "RIP: " << regs.rip << std::endl;
-        out << "R8: " << regs.r8 << std::endl;
-        out << "R9: " << regs.r9 << std::endl;
-        out << "R10: " << regs.r10 << std::endl;
-        out << "R11: " << regs.r11 << std::endl;
-        out << "R12: " << regs.r12 << std::endl;
-        out << "R13: " << regs.r13 << std::endl;
-        out << "R14: " << regs.r14 << std::endl;
-        out << "R15: " << regs.r15 << std::endl;
+        out << "RIP: " << std::hex << std::setw(16) << std::setfill('0') << regs.rip << std::endl;
+        out << "RAX: " << std::hex << std::setw(16) << std::setfill('0') << regs.rax << std::endl;
+        out << "RBX: " << std::hex << std::setw(16) << std::setfill('0') << regs.rbx << std::endl;
+        out << "RCX: " << std::hex << std::setw(16) << std::setfill('0') << regs.rcx << std::endl;
+        out << "RDX: " << std::hex << std::setw(16) << std::setfill('0') << regs.rdx << std::endl;
+        out << "RDI: " << std::hex << std::setw(16) << std::setfill('0') << regs.rdi << std::endl;
+        out << "RSI: " << std::hex << std::setw(16) << std::setfill('0') << regs.rsi << std::endl;
+        out << "RBP: " << std::hex << std::setw(16) << std::setfill('0') << regs.rbp << std::endl;
+        out << "RSP: " << std::hex << std::setw(16) << std::setfill('0') << regs.rsp << std::endl;
+        out << "R8:  " << std::hex << std::setw(16) << std::setfill('0') << regs.r8 << std::endl;
+        out << "R9:  " << std::hex << std::setw(16) << std::setfill('0') << regs.r9 << std::endl;
+        out << "R10: " << std::hex << std::setw(16) << std::setfill('0') << regs.r10 << std::endl;
+        out << "R11: " << std::hex << std::setw(16) << std::setfill('0') << regs.r11 << std::endl;
+        out << "R12: " << std::hex << std::setw(16) << std::setfill('0') << regs.r12 << std::endl;
+        out << "R13: " << std::hex << std::setw(16) << std::setfill('0') << regs.r13 << std::endl;
+        out << "R14: " << std::hex << std::setw(16) << std::setfill('0') << regs.r14 << std::endl;
+        out << "R15: " << std::hex << std::setw(16) << std::setfill('0') << regs.r15 << std::endl;
     }
     inline ~TracedProcess()
     {
