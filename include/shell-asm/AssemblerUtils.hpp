@@ -46,7 +46,7 @@ public:
             size_t size;
             size_t count;
             uint8_t* data;
-            if (ks_asm(ks, line.c_str(), 0, &data, &size, &count) != KS_ERR_OK)
+            if (ks_asm(ks, line.c_str(), offset, &data, &size, &count) != KS_ERR_OK)
             {
                 throw std::invalid_argument("Failed to assemble instruction");
             }
@@ -82,6 +82,7 @@ public:
         auto it = self->symbols.find(symbol);
         if (it != self->symbols.end())
         {
+            std::cout << "Resolved symbol " << symbol << " at " << std::hex << it->second << std::endl;
             *value = it->second;
             return true;
         }

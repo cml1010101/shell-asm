@@ -117,6 +117,17 @@ int main()
         {
             break;
         }
+        if (line == "dump")
+        {
+            dump_memory(memory, memory.get_address());
+            continue;
+        }
+        if (line == "step")
+        {
+            process.step();
+            process.print_registers();
+            continue;
+        }
         try
         {
             auto [insns, insn_count] = assembler.assemble(memory.get_address(), {line});
