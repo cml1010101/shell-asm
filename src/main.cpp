@@ -113,16 +113,16 @@ int main()
         std::string line;
         std::cout << "> ";
         std::getline(std::cin, line);
-        if (line == "quit")
+        if (line == "quit" || line == "exit" || line == "q")
         {
             break;
         }
-        if (line == "dump")
+        if (line == "dump" || line == "memory" || line == "m")
         {
             dump_memory(memory, memory.get_address());
             continue;
         }
-        if (line == "step")
+        if (line == "step" || line == "s")
         {
             process.step();
             process.print_registers();
